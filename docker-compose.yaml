@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    hostname: backend-host
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:5000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
